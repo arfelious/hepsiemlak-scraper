@@ -70,11 +70,11 @@ let getListingIds = async ()=>{
         console.error(e)
     }
 }
-const IMG_EXT = ["jpg","jpeg","png","gif","webp"]
+const IMG_EXTS = ["jpg","jpeg","png","gif","webp"]
 let removeImages = obj=>{
     for(let key in obj){
         let val = obj[key]
-        if(typeof val=="string"&&IMG_EXT.some(x=>val.includes(x))){
+        if(typeof val=="string"&&IMG_EXTS.some(x=>val.includes(x))){
             delete obj[key]
         }
         else if(typeof val == "object"){
