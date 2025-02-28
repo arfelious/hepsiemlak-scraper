@@ -6,9 +6,9 @@
 5. İstekleri filter kısmından https://www.hepsiemlak.com yazarak filtreleyin veya seçeceğiniz isteğin üzerine mouse ile geldiğinizde aynı siteye dair olduğundan emin olun
 6. Seçtiğiniz isteğin üzerine sağ tıklayıp kopyalama seçeneğinde Copy kısmında Copy as cURL seçeneğine tıklayın
 7. Metni yapıştırabileceğiniz herhangi bir yere yapıştırın (not defteri gibi)
-8. Chrome veya Chromium tabanlı tarayıcı kullanıyorsanız aşağıdaki kısmı kesme işareti olmadan seçin.
+8. Chrome veya Chromium tabanlı tarayıcı kullanıyorsanız aşağıdaki kısmı seçin.
  
-![image](https://i.imgur.com/19TCBDtl.png)
+![image](https://i.imgur.com/kyMk8w0.png)
 
 9. Firefox kullanıyorsanız aşağıdaki kısmı seçin (Cookie: kısmından sonraki kısım, kesme işaretine kadar)
 ![image](https://i.imgur.com/hny0225.png)
