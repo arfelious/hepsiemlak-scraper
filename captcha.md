@@ -11,6 +11,7 @@
 ![image](https://i.imgur.com/kyMk8w0.png)
 
 9. Firefox kullanıyorsanız aşağıdaki kısmı seçin (Cookie: kısmından sonraki kısım, kesme işaretine kadar)
+
 ![image](https://i.imgur.com/hny0225.png)
 
 10. Programda cookie komutunu kullanın, `Cookie:` şeklinde prompt geldiğinde kopyaladığınız metni yapıştırın
