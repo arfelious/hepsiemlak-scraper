@@ -111,7 +111,7 @@ let start = async ()=>{
     curr=curr.trim().toLocaleLowerCase()
     switch(curr){
         case "al":{
-            let id = await rlQuestion("İlan ID: ")
+            let id = (await rlQuestion("İlan ID: "))?.trim()
             let listing = await getListing(id)
             console.log(listing)
             break

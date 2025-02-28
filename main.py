@@ -41,7 +41,9 @@ def get_headers():
             "Sec-Fetch-Site": "cross-site",
             "Priority": "u=0, i",
             "Pragma": "no-cache",
-            "Cache-Control": "no-cache",
+            "cache-control": "max-age=0",
+            "upgrade-insecure-requests": "1",
+            "sec-ch-ua": "\"Chromium\";v=\"133\", \"Not(A:Brand\";v=\"99\"",
         }
 
 def get_listing_ids():
