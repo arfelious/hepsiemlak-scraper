@@ -11,7 +11,7 @@ const rlQuestion = promisify(rl.question).bind(rl);
 const BASE_URL = "https://www.hepsiemlak.com"
 const COOKIE_PATH = path.join(os.tmpdir(), "cookie_hepsiemlak.txt")
 let cookie = fs.existsSync(COOKIE_PATH)?fs.readFileSync(COOKIE_PATH).toString():""
-const ID_LIST_ENDPOINT = BASE_URL+"/api/realty-map/?mapSize=1500&intent=satilik&city=sakarya&mainCategory=konut&mapCornersEnabled=true"
+const ID_LIST_ENDPOINT = BASE_URL+"/api/realty-map/?mapSize=2500&intent=satilik&city=sakarya&mainCategory=konut&mapCornersEnabled=true"
 const USER_AGENTS = [["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",0.1]]
 const CAPTCHA_ERR = "Hata. Robot doğrulamasını geçmek gerekebilir.\nYönerge: https://github.com/arfelious/hepsiemlak-scraper/blob/main/captcha.md"
 let getWeightedRandom = list=>{

@@ -4,7 +4,7 @@
 3. İncele menüsünü açın (F12)
 4. Sayfayı yenileyin
 5. İstekleri filter kısmından https://www.hepsiemlak.com yazarak filtreleyin veya seçeceğiniz isteğin üzerine mouse ile geldiğinizde aynı siteye dair olduğundan emin olun
-6. Seçtiğiniz isteğin üzerine sağ tıklayıp kopyalama seçeneğinde Copy kısmında Chrome kullanıyorsanız Copy as fetch (Node.js) yazana, Firefox kullanıyorsanız Copy as cURL seçeneğine tıklayın
+6. Seçtiğiniz isteğin üzerine sağ tıklayıp kopyalama seçeneğinde Copy kısmında Chrome kullanıyorsanız Copy as fetch (Node.js) yazana, Firefox kullanıyorsanız Copy as cURL (varsa `POSIX` veya `bash` yazan) seçeneğine tıklayın
 7. Metni yapıştırabileceğiniz herhangi bir yere yapıştırın (not defteri gibi)
 8. Chrome veya Chromium tabanlı tarayıcı kullanıyorsanız aşağıdaki kısmı seçin. (Tırnak işaretleri hariç)
  
@@ -16,3 +16,4 @@
 
 10. Programda cookie komutunu kullanın, `Cookie:` şeklinde prompt geldiğinde kopyaladığınız metni yapıştırın
 11. Veri almaya devam edebilirsiniz.
+

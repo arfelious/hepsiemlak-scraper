@@ -8,15 +8,13 @@ import tempfile
 import asyncio
 BASE_URL = "https://www.hepsiemlak.com"
 COOKIE_PATH = os.path.join(tempfile.gettempdir(), "cookie_hepsiemlak.txt")
-
-# Load cookie if it exists
 if os.path.exists(COOKIE_PATH):
     with open(COOKIE_PATH, "r", encoding="utf-8") as f:
         cookie = f.read().strip()
 else:
     cookie = ""
 
-ID_LIST_ENDPOINT = BASE_URL + "/api/realty-map/?mapSize=1500&intent=satilik&city=sakarya&mainCategory=konut&mapCornersEnabled=true"
+ID_LIST_ENDPOINT = BASE_URL + "/api/realty-map/?mapSize=2500&intent=satilik&city=sakarya&mainCategory=konut&mapCornersEnabled=true"
 USER_AGENTS = [
     ["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36", 0.1]
 ]
@@ -81,10 +79,9 @@ def remove_images(obj):
         for value in obj.values():
             remove_images(value)
 
-cookie_store = {}  # Dictionary to store cookies
+cookie_store = {}
 
 def parse_set_cookie(set_cookie_headers):
-    """Parses 'Set-Cookie' headers and updates the cookie store."""
     if not set_cookie_headers:
         return
     cookies = set_cookie_headers.split(", ") if isinstance(set_cookie_headers, str) else set_cookie_headers
@@ -95,14 +92,11 @@ def parse_set_cookie(set_cookie_headers):
             cookie_store[key.strip()] = value.strip()
 
 def get_cookie_header():
-    """Generates the Cookie header from stored cookies."""
     return "; ".join(f"{k}={v}" for k, v in cookie_store.items())
 
 async def sfetch(url, options=None, depth=0):
-    """Fetches a URL without following redirects, handling 403 errors with retry logic."""
     if depth > 5:
         raise Exception("Too many redirects")
-
     options = options or {}
     method = options.get("method", "GET")
     headers = options.get("headers", {})
