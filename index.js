@@ -147,7 +147,6 @@ function getCookieHeader() {
 }
 let sleep = ms=>new Promise(res=>setTimeout(res,ms))
 async function sfetch(url, options = {}, depth = 0) {
-    if (depth > 5) throw new Error("Too many redirects");
     options.redirect = "manual";
     if (!options.headers) options.headers = {};
     options.headers["Cookie"] = getCookieHeader(); 
@@ -155,7 +154,7 @@ async function sfetch(url, options = {}, depth = 0) {
     if (response.headers.has("set-cookie")) {
         parseSetCookie(response.headers.get("set-cookie"));
     }
-    if (response.status === 403) {
+    if (response.status === 403&&depth<5) {
         let text = await response.text()
         const location = response.headers.get("location")||BASE_URL+text.split('fa: "')[1].split('"')[0].replace(/\\/g,"")
         await sleep(5000+Math.random()*2000)

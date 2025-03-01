@@ -70,14 +70,14 @@ def get_options(cookie):
         "method": "GET"
     }
 
+IMG_EXTS = {"jpg", "jpeg", "png", "gif", "webp"}
 def remove_images(obj):
-    IMG_EXTS = {"jpg", "jpeg", "png", "gif", "webp"}
-    if isinstance(obj, dict):
-        keys_to_remove = [key for key, value in obj.items() if isinstance(value, str) and any(ext in value for ext in IMG_EXTS)]
-        for key in keys_to_remove:
-            del obj[key]
-        for value in obj.values():
-            remove_images(value)
+    keys_to_delete = [key for key, val in obj.items() if isinstance(val, str) and any(ext in val for ext in IMG_EXTS)]
+    for key in keys_to_delete:
+        del obj[key]
+    for key, val in obj.items():
+        if isinstance(val, dict):
+            remove_images(val)
 
 cookie_store = {}
 
@@ -95,8 +95,6 @@ def get_cookie_header():
     return "; ".join(f"{k}={v}" for k, v in cookie_store.items())
 
 async def sfetch(url, options=None, depth=0):
-    if depth > 5:
-        raise Exception("Too many redirects")
     options = options or {}
     method = options.get("method", "GET")
     headers = options.get("headers", {})
@@ -122,13 +120,12 @@ async def sfetch(url, options=None, depth=0):
         data = response.read().decode("utf-8")
         conn.close()
 
-        if status == 403:
-            print("...")
+        if status == 403 and depth<5:
             location = response.getheader("Location")
             if not location and 'fa: "' in data:
                 location = BASE_URL + data.split('fa: "')[1].split('"')[0].replace("\\", "")
             if location:
-                wait_time = 5 + (2 * asyncio.get_event_loop().time() % 1)  # 5-7 seconds delay
+                wait_time = 5 + (2 * asyncio.get_event_loop().time() % 1)
                 await asyncio.sleep(wait_time)
                 return await sfetch(urllib.parse.urljoin(url, location), options, depth + 1)
 
