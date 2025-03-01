@@ -139,10 +139,12 @@ async def get_listing_ids():
     response_text = await sfetch(ID_LIST_ENDPOINT, get_options(cookie))
     if response_text:
         try:
+            if "Just a moment..." in response_text:
+                raise Exception(CAPTCHA_ERR)
             parsed = json.loads(response_text)
             return [x["listingId"] for x in parsed.get("realties", [])]
-        except json.JSONDecodeError as e:
-            print("Hata. İlan ID'leri alınamadı.\nSunucudan gelen yanıt:", response_text[:50], "...")
+        except Exception as e:
+            print((str(e) if "Hata" in str(e) else "Hata. İlan ID'leri alınamadı.")+"\nSunucudan gelen yanıt:", response_text[:50], "...")
     return []
 
 async def get_listing(listing_id):
@@ -150,6 +152,8 @@ async def get_listing(listing_id):
     response_text = await sfetch(url, get_options(cookie))
     if response_text:
         try:
+            if "Just a moment..." in response_text:
+                raise Exception(CAPTCHA_ERR)
             parsed = json.loads(response_text)
             if "exception" in parsed:
                 raise Exception("Hata. Sunucudan gelen hata mesajı: " + ", ".join(parsed.get("errors", [])))
@@ -158,7 +162,7 @@ async def get_listing(listing_id):
             realty_detail.pop("breadcrumbs", None)
             return json.dumps(realty_detail, ensure_ascii=False)
         except Exception as e:
-            print(e)
+            print(str(e))
             print("Hata. İlan bilgileri alınamadı.\nSunucudan gelen yanıt:", response_text[:50], "...")
     return None
 
