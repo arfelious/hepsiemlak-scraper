@@ -118,7 +118,7 @@ let getListing = async id=>{
             delete res.breadcrumbs
             return JSON.stringify(res)
         }catch(e){
-            throw e.startsWith("Hata")?e:"Hata. İlan bilgileri alınamadı.\nSunucudan gelen yanıt: "+curr.slice(0,50)+"..."
+            throw e.toString().startsWith("Hata")?e:"Hata. İlan bilgileri alınamadı.\nSunucudan gelen yanıt: "+curr.slice(0,50)+"..."
         }
     }catch(e){
         console.error(e)
@@ -202,3 +202,8 @@ let start = async ()=>{
     start()
 }
 start()
+//let known = fs.readFileSync("../test.csv","utf8").split("\n").map(e=>e.trim())
+//getListingIds().then(async ids=>{
+//    let unknown = ids.filter(e=>!known.includes(e))
+//    fs.writeFileSync("../unknown.csv",unknown.join("\n"))
+//})
